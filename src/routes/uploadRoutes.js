@@ -5,8 +5,9 @@ const {uploadFile,getAllFile,getFileByID } = require("../controllers/uploadContr
 const router = express.Router();
 
 
+//POST : uploading file to uploads folder
 
-router.post("/upload-file",upload.single("image"),(req,res)=>{
+router.post("/upload-file",upload.any("image"),(req,res)=>{
     if(!req.file){
         return res.status(400).json({
             message:"No file uploaded"
@@ -18,12 +19,17 @@ router.post("/upload-file",upload.single("image"),(req,res)=>{
     res.status(200).json({fileUrl});
 });
 
+//GET : upload file to MONGODB storage
 router.post("/upload",uploadFile);
+
+//GET: all files stored in databse
 router.get("/files",getAllFile);
+
+//GET: access file by ID
 router.get("/file:id",getFileByID);
 
 
-// router.get("/files",)
+
 
 
 module.exports = router;
