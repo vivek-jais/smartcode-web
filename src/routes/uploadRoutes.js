@@ -7,7 +7,7 @@ const router = express.Router();
 
 //POST : uploading file to uploads folder
 
-router.post("/upload-file",upload.any("image"),(req,res)=>{
+router.post("/upload-file",upload.single("image"),(req,res)=>{
     if(!req.file){
         return res.status(400).json({
             message:"No file uploaded"
