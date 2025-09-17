@@ -20,7 +20,7 @@ all routes in uploadRoutes folder
 2.POST : /api/upload  --> post file url to MONGODB uploads collection
 3.GET : /api/files  --> get all files stored in MONGODB database uploads
 4.GET : /api/file:id --> get file by id as param
-5.POST : /api/config/storage ---> save storage loaction to db  (NOT DONE YET)
+5.POST : /api/config/storage ---> save storage loaction to db  
 
 **MIDDLEWARE**
 --UploadMiddleware--

@@ -1,7 +1,7 @@
 const express =  require("express");
 
 const upload =  require("../middleware/uploadMiddleware")
-const {uploadFile,getAllFile,getFileByID } = require("../controllers/uploadController")
+const {uploadFile,getAllFile,getFileByID,postServerLocation } = require("../controllers/uploadController")
 const router = express.Router();
 
 
@@ -29,7 +29,8 @@ router.get("/files",getAllFile);
 router.get("/file:id",getFileByID);
 
 
-
+//POST : save storage location
+router.post("/config/storage",postServerLocation);
 
 
 module.exports = router;

@@ -1,5 +1,6 @@
 const Uploads = require("../models/fileStorage");
 
+const ServerLoc  = require("../models/location")
 
 const uploadFile = async (req,res)=>{
     try {
@@ -29,7 +30,6 @@ const getAllFile = async (req,res)=>{
 console.log(files);
 if(files){
 return res.status(200).json({
-    status:success,
     files :files
 })
 
@@ -51,7 +51,9 @@ if(!file){
         message: "File not found"
     })
 }
-
+return res.status(200).json({
+    file: file
+})
 } catch (error) {
      res.status(400).json({
         error:error
@@ -61,7 +63,15 @@ if(!file){
 
 const postServerLocation = async (req,res)=>{
 try {
+    const {locationIP} = req.body;
+    const location = await ServerLoc.create({
+        locationIP
+    });
+    console.log(location);
     
+    return res.status(200).json({
+        location
+    })
 } catch (error) {
     res.status(400).json({
        
@@ -71,5 +81,5 @@ try {
 }
 
 
-module.exports = {uploadFile,getAllFile,getFileByID};
+module.exports = {uploadFile,getAllFile,getFileByID,postServerLocation};
 
